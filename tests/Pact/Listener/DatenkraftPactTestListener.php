@@ -5,7 +5,6 @@ namespace Pact\Listener;
 use GuzzleHttp\Psr7\Uri;
 use PhpPact\Broker\Service\BrokerHttpClient;
 use PhpPact\Http\GuzzleClient;
-use PhpPact\Standalone\MockService\MockServerConfigInterface;
 use PhpPact\Standalone\MockService\MockServerEnvConfig;
 use PhpPact\Standalone\MockService\Service\MockServerHttpService;
 use PHPUnit\Framework\AssertionFailedError;
@@ -38,7 +37,7 @@ class DatenkraftPactTestListener implements TestListener
      */
     public function __construct(array $testSuiteNames)
     {
-        $this->testSuiteNames   = $testSuiteNames;
+        $this->testSuiteNames = $testSuiteNames;
         $this->mockServerConfig = new MockServerEnvConfig();
     }
 
@@ -85,7 +84,8 @@ class DatenkraftPactTestListener implements TestListener
                 print 'PACT_CONSUMER_TAG environment variable was not set. Skipping PACT file upload.';
             } else {
                 $clientConfig = [];
-                if (($user = getenv('PACT_BROKER_HTTP_AUTH_USER')) &&
+                if (
+                    ($user = getenv('PACT_BROKER_HTTP_AUTH_USER')) &&
                     ($pass = getenv('PACT_BROKER_HTTP_AUTH_PASS'))
                 ) {
                     $clientConfig = [
