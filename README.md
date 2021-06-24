@@ -35,12 +35,27 @@ The Client also is auto generated with jane-php using an openapi.json file.
 ~~~~ php
 require 'path/to/vendor/autoload.php';
 
-// TODO
+// Valid clientId, clientSecret and requested scopes
+$clientId = '1234';
+$clientSecret = 'abcd';
+$oAuthScopes = ['accounting-profile:get', 'accounting-profile:post', 'accounting-profile:put', 'accounting-profile:delete'];
+
+$config['clientId'] = $clientId;
+$config['clientSecret'] = $clientSecret;
+$config['oAuthScopes'] = $oAuthScopes;
+
+$factory = new ClientFactory($config);
+$client = Client::createWithFactory($factory);
 ~~~~
 
-### Example Endpoint: Get Project
+### Example Endpoint: Post Accounting Profile
 ~~~~ php
-// TODO
+$accountingProfile = (new NewAccountingProfile())
+            ->setName($this->requestData['name']);
+
+$response = $client->postAccountingProfile($accountingProfile, Client::FETCH_RESPONSE);
+$response; // accountingProfile
+
 ~~~~
 
 ## Licence
