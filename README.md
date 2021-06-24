@@ -53,7 +53,7 @@ $client = Client::createWithFactory($factory);
 $accountingProfile = (new NewAccountingProfile())
             ->setName($this->requestData['name']);
 
-$response = $client->postAccountingProfile($accountingProfile, Client::FETCH_RESPONSE);
+$response = $client->postAccountingProfile($accountingProfile);
 $response; // accountingProfile
 
 ~~~~
