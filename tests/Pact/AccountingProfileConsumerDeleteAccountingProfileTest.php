@@ -46,7 +46,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->path = '/accounting-profile/' . $this->accountingProfileId;
     }
 
-    public function testAccountingProfileSuccess(): void
+    public function testDeleteAccountingProfileSuccess(): void
     {
         $this->expectedStatusCode = '204';
 
@@ -60,7 +60,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->beginTest();
     }
 
-    public function testAccountingProfileUnauthorized(): void
+    public function testDeleteAccountingProfileUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -78,7 +78,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->beginTest();
     }
 
-    public function testAccountingProfileForbidden(): void
+    public function testDeleteAccountingProfileForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -96,7 +96,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->beginTest();
     }
 
-    public function testAccountingProfileNotFound(): void
+    public function testDeleteAccountingProfileNotFound(): void
     {
         // Path with accountingProfileId for non existent accountingProfile
         $this->accountingProfileId = $this->accountingProfileIdInValid;
@@ -111,6 +111,24 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
                 'A Accounting Profile with profileAccountId does not exist'
             )
             ->uponReceiving('Not Found DELETE request to /accounting-profile/{accountingProfileId}');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
+    public function testGetAccountingProfileBadRequest(): void
+    {
+        // invalid uuid query param accountingProfileId
+        $this->accountingProfileId = 'non_uid';
+        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+
+        // Error code in response is 400
+        $this->expectedStatusCode = '400';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        $this->builder
+            ->given('The request query is invalid or missing')
+            ->uponReceiving('Bad DELETE request to /accounting-profile/{accountingProfileId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();

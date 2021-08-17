@@ -121,6 +121,24 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
         $this->beginTest();
     }
 
+    public function testGetAccountingProfileBadRequest(): void
+    {
+        // invalid uuid query param accountingProfileId
+        $this->accountingProfileId = 'non_uid';
+        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+
+        // Error code in response is 400
+        $this->expectedStatusCode = '400';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        $this->builder
+            ->given('The request query is invalid or missing')
+            ->uponReceiving('Bad GET request to /accounting-profile/{accountingProfileId}');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
     /**
      * @return ResponseInterface
      * @throws ConfigException
