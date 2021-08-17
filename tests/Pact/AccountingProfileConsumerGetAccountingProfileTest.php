@@ -121,7 +121,7 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
         $this->beginTest();
     }
 
-    public function testDeleteAccountingProfileBadRequest(): void
+    public function testGetAccountingProfileBadRequest(): void
     {
         // invalid uuid query param accountingProfileId
         $this->accountingProfileId = 'non_uid';
