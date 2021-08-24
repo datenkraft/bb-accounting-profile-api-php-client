@@ -34,16 +34,12 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
         ];
 
         $this->requestData = [];
-        $this->responseData = [
+        $this->responseData = $this->matcher->eachLike(
             [
-                'accountingProfile' => 'accountingProfileId_test_get1',
-                'name' => 'Accounting Profile Test',
-            ],
-            [
-                'accountingProfile' => 'accountingProfileId_test_get2',
-                'name' => 'Accounting Profile Test'
+                'accountingProfileId' => $this->matcher->uuid(),
+                'name' => $this->matcher->like('Accounting Profile Test'),
             ]
-        ];
+        );
 
         $this->path = '/accounting-profile';
     }
