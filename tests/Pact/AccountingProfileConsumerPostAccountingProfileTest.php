@@ -38,7 +38,7 @@ class AccountingProfileConsumerPostAccountingProfileTest extends AccountingProfi
         $this->responseHeaders = ['Content-Type' => 'application/json'];
 
         $this->requestData = [
-            'name' => 'Accounting Profile Test'
+            'name' => 'Accounting Profile Test Post'
         ];
         $this->responseData = [
             'accountingProfileId' => $this->accountingProfileId,

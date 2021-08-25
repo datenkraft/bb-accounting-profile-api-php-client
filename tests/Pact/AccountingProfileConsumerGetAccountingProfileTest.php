@@ -37,15 +37,15 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
             'Content-Type' => 'application/json'
         ];
 
-        $this->accountingProfileIdValid = 'accountingProfileId_test_get1';
-        $this->accountingProfileIdInvalid = 'accountingProfileId_test_invalid';
+        $this->accountingProfileIdValid = 'f6737e9b-db43-4ff9-b441-8a8271163f63';
+        $this->accountingProfileIdInvalid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
 
         $this->accountingProfileId = $this->accountingProfileIdValid;
 
         $this->requestData = [];
         $this->responseData = [
             'accountingProfileId' => $this->accountingProfileId,
-            'name' => 'Accounting Profile Test'
+            'name' => 'Accounting Profile Test Get'
         ];
 
         $this->path = '/accounting-profile/' . $this->accountingProfileId;

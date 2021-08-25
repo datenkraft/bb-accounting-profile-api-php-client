@@ -38,7 +38,12 @@ require 'path/to/vendor/autoload.php';
 // Valid clientId, clientSecret and requested scopes
 $clientId = '1234';
 $clientSecret = 'abcd';
-$oAuthScopes = ['accounting-profile:get', 'accounting-profile:post', 'accounting-profile:put', 'accounting-profile:delete'];
+$oAuthScopes = [
+    'bb-accounting-profile-api/accounting-profile:get',
+    'bb-accounting-profile-api/accounting-profile:post',
+    'bb-accounting-profile-api/accounting-profile:put',
+    'bb-accounting-profile-api/accounting-profile:delete'
+];
 
 $config['clientId'] = $clientId;
 $config['clientSecret'] = $clientSecret;
@@ -50,8 +55,7 @@ $client = Client::createWithFactory($factory);
 
 ### Example Endpoint: Post Accounting Profile
 ~~~~ php
-$accountingProfile = (new NewAccountingProfile())
-            ->setName($this->requestData['name']);
+$accountingProfile = (new NewAccountingProfile())->setName('Accounting Profile Test');
 
 $response = $client->postAccountingProfile($accountingProfile);
 $response; // accountingProfile

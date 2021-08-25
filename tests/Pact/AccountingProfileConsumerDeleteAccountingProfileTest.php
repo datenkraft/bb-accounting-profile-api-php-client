@@ -35,8 +35,8 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         ];
         $this->responseHeaders = [];
 
-        $this->accountingProfileIdValid = 'accountingProfileId_test_delete';
-        $this->accountingProfileIdInValid = 'accountingProfileId_test_invalid';
+        $this->accountingProfileIdValid = '2becace9-dd9a-4770-97e5-06e8f47786d6';
+        $this->accountingProfileIdInValid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
 
         $this->accountingProfileId = $this->accountingProfileIdValid;
 
