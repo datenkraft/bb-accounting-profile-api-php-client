@@ -10,14 +10,14 @@ use Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class AccountingProfileConsumerGetAccountingProfileTest
+ * Class AccountingProfileConsumerGetPaymentTermsTest
  * @package Pact
  */
-class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfileConsumerTest
+class AccountingProfileConsumerGetPaymentTermsTest extends AccountingProfileConsumerTest
 {
-    protected string $accountingProfileId;
-    protected string $accountingProfileIdValid;
-    protected string $accountingProfileIdInvalid;
+    protected string $paymentTermsId;
+    protected string $paymentTermsIdValid;
+    protected string $paymentTermsIdInvalid;
 
     /**
      * @throws Exception
@@ -28,7 +28,7 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
 
         $this->method = 'GET';
 
-        $this->token = getenv('VALID_TOKEN_ACCOUNTING_PROFILE_GET');
+        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_GET');
 
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token
@@ -37,35 +37,37 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
             'Content-Type' => 'application/json'
         ];
 
-        $this->accountingProfileIdValid = 'f6737e9b-db43-4ff9-b441-8a8271163f63';
-        $this->accountingProfileIdInvalid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
+        $this->paymentTermsIdValid = '8c739fcb-8726-445a-8270-a9b514d9de63';
+        $this->paymentTermsIdInvalid = 'dd7c5031-9a4e-40fd-aa9f-2f97cc74f295';
 
-        $this->accountingProfileId = $this->accountingProfileIdValid;
+        $this->paymentTermsId = $this->paymentTermsIdValid;
 
         $this->requestData = [];
         $this->responseData = [
-            'accountingProfileId' => $this->accountingProfileId,
-            'name' => 'Accounting Profile Test Get'
+            'paymentTermsId' => $this->paymentTermsId,
+            'name' => 'Payment Terms Test Get',
+            'billingInterval' => 'monthly',
+            'accountingProfileId' => 'f6737e9b-db43-4ff9-b441-8a8271163f63',
         ];
 
-        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+        $this->path = '/payment-terms/' . $this->paymentTermsId;
     }
 
-    public function testGetAccountingProfileSuccess(): void
+    public function testGetPaymentTermsSuccess(): void
     {
         $this->expectedStatusCode = '200';
 
         $this->builder
             ->given(
-                'An Accounting Profile with accountingProfileId exists, ' .
+                'Payment Terms with paymentTermsId exist, ' .
                 'the request is valid, the token is valid and has a valid scope'
             )
-            ->uponReceiving('Successful GET request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Successful GET request to /payment-terms/{paymentTermsId}');
 
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileUnauthorized(): void
+    public function testGetPaymentTermsUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -77,13 +79,13 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The token is invalid')
-            ->uponReceiving('Unauthorized GET request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Unauthorized GET request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileForbidden(): void
+    public function testGetPaymentTermsForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -95,35 +97,35 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The request is valid, the token is valid with an invalid scope')
-            ->uponReceiving('Forbidden GET request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Forbidden GET request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileNotFound(): void
+    public function testGetPaymentTermsNotFound(): void
     {
-        // Path with accountingProfileId for non existent accountingProfile
-        $this->accountingProfileId = $this->accountingProfileIdInvalid;
-        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+        // Path with paymentTermsId for non existent paymentTerms
+        $this->paymentTermsId = $this->paymentTermsIdInvalid;
+        $this->path = '/payment-terms/' . $this->paymentTermsId;
 
         // Error code in response is 404
         $this->expectedStatusCode = '404';
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         $this->builder
-            ->given('An Accounting Profile with accountingProfileId does not exist')
-            ->uponReceiving('Not Found GET request to /accounting-profile/{accountingProfileId}');
+            ->given('Payment Terms with paymentTermsId do not exist')
+            ->uponReceiving('Not Found GET request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileBadRequest(): void
+    public function testGetPaymentTermsBadRequest(): void
     {
-        // invalid uuid query param accountingProfileId
-        $this->accountingProfileId = 'non_uid';
-        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+        // invalid uuid query param paymentTermsId
+        $this->paymentTermsId = 'non_uid';
+        $this->path = '/payment-terms/' . $this->paymentTermsId;
 
         // Error code in response is 400
         $this->expectedStatusCode = '400';
@@ -131,7 +133,7 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The request query is invalid or missing')
-            ->uponReceiving('Bad GET request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Bad GET request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
@@ -150,6 +152,6 @@ class AccountingProfileConsumerGetAccountingProfileTest extends AccountingProfil
         $factory->setToken($this->token);
         $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        return $client->getAccountingProfile($this->accountingProfileId, Client::FETCH_RESPONSE);
+        return $client->getPaymentTerms($this->paymentTermsId, Client::FETCH_RESPONSE);
     }
 }

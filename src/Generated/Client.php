@@ -112,6 +112,89 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
     {
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetOpenApiInFormat($format), $fetch);
     }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\PaymentTerms[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getPaymentTermsCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetPaymentTermsCollection(), $fetch);
+    }
+    /**
+     * Add ew PaymentTerms
+     *
+     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostPaymentTermsUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostPaymentTermsForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostPaymentTermsBadRequestException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostPaymentTermsInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\PaymentTerms|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function postPaymentTerms(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\PostPaymentTerms($requestBody), $fetch);
+    }
+    /**
+     * Delete Payment Terms
+     *
+     * @param string $paymentTermsId Payment Terms Id
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function deletePaymentTerms(string $paymentTermsId, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\DeletePaymentTerms($paymentTermsId), $fetch);
+    }
+    /**
+     * Get Payment Terms by paymentTermsId
+     *
+     * @param string $paymentTermsId Payment Terms Id
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\PaymentTerms|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getPaymentTerms(string $paymentTermsId, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetPaymentTerms($paymentTermsId), $fetch);
+    }
+    /**
+     * Update Payment Terms
+     *
+     * @param string $paymentTermsId Payment Terms Id
+     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PutPaymentTermsUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PutPaymentTermsForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PutPaymentTermsNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PutPaymentTermsBadRequestException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PutPaymentTermsInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\PaymentTerms|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function putPaymentTerms(string $paymentTermsId, \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\PutPaymentTerms($paymentTermsId, $requestBody), $fetch);
+    }
     public static function create($httpClient = null, array $additionalPlugins = array())
     {
         if (null === $httpClient) {

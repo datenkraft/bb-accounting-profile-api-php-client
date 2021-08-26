@@ -3,7 +3,7 @@
 namespace Pact;
 
 use Datenkraft\Backbone\Client\AccountingProfileApi\Client;
-use Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewAccountingProfile;
+use Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms;
 use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
@@ -11,14 +11,14 @@ use Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class AccountingProfileConsumerPutAccountingProfileTest
+ * Class AccountingProfileConsumerPutPaymentTermsTest
  * @package Pact
  */
-class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfileConsumerTest
+class AccountingProfileConsumerPutPaymentTermsTest extends AccountingProfileConsumerTest
 {
-    protected string $accountingProfileId;
-    protected string $accountingProfileIdValid;
-    protected string $accountingProfileIdInvalid;
+    protected string $paymentTermsId;
+    protected string $paymentTermsIdValid;
+    protected string $paymentTermsIdInvalid;
 
     /**
      * @throws Exception
@@ -29,7 +29,7 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
 
         $this->method = 'PUT';
 
-        $this->token = getenv('VALID_TOKEN_ACCOUNTING_PROFILE_PUT');
+        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_PUT');
 
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token,
@@ -39,37 +39,41 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
             'Content-Type' => 'application/json'
         ];
 
-        $this->accountingProfileIdValid = '6f240614-c760-4085-821e-f6612bccb2b5';
-        $this->accountingProfileIdInvalid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
+        $this->paymentTermsIdValid = '200dffc8-cae9-4ad2-9406-376ddbacfdee';
+        $this->paymentTermsIdInvalid = 'dd7c5031-9a4e-40fd-aa9f-2f97cc74f295';
 
-        $this->accountingProfileId = $this->accountingProfileIdValid;
+        $this->paymentTermsId = $this->paymentTermsIdValid;
 
         $this->requestData = [
-            'name' => 'Accounting Profile Test Put 2'
+            'name' => 'Payment Terms Test Put 2',
+            'billingInterval' => 'weekly',
+            'accountingProfileId' => '6f240614-c760-4085-821e-f6612bccb2b5',
         ];
         $this->responseData = [
-            'accountingProfileId' => $this->accountingProfileId,
-            'name' => $this->requestData['name'],
+            'paymentTermsId' => $this->paymentTermsId,
+            'name' => 'Payment Terms Test Put 2',
+            'billingInterval' => 'weekly',
+            'accountingProfileId' => '6f240614-c760-4085-821e-f6612bccb2b5',
         ];
 
-        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+        $this->path = '/payment-terms/' . $this->paymentTermsId;
     }
 
-    public function testPutAccountingProfileSuccess(): void
+    public function testPutPaymentTermsSuccess(): void
     {
         $this->expectedStatusCode = '200';
 
         $this->builder
             ->given(
-                'An Accounting Profile with accountingProfileId exists, ' .
+                'Payment Terms with paymentTermsId exist, ' .
                 'the request is valid, the token is valid and has a valid scope'
             )
-            ->uponReceiving('Successful PUT request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Successful PUT request to /payment-terms/{paymentTermsId}');
 
         $this->beginTest();
     }
 
-    public function testPutAccountingProfileUnauthorized(): void
+    public function testPutPaymentTermsUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -81,13 +85,13 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The token is invalid')
-            ->uponReceiving('Unauthorized PUT request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Unauthorized PUT request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testPutAccountingProfileForbidden(): void
+    public function testPutPaymentTermsForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -99,31 +103,31 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The request is valid, the token is valid with an invalid scope')
-            ->uponReceiving('Forbidden PUT request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Forbidden PUT request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testPutAccountingProfileNotFound(): void
+    public function testPutPaymentTermsNotFound(): void
     {
-        // Path with accountingProfileId for non existent accountingProfile
-        $this->accountingProfileId = $this->accountingProfileIdInvalid;
-        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+        // Path with paymentTermsId for non existent paymentTerms
+        $this->paymentTermsId = $this->paymentTermsIdInvalid;
+        $this->path = '/payment-terms/' . $this->paymentTermsId;
 
         // Error code in response is 404
         $this->expectedStatusCode = '404';
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         $this->builder
-            ->given('An Accounting Profile with accountingProfileId does not exist')
-            ->uponReceiving('Not Found PUT request to /accounting-profile/{accountingProfileId}');
+            ->given('Payment Terms with paymentTermsId do not exist')
+            ->uponReceiving('Not Found PUT request to /payment-terms/{paymentTermsId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testPutAccountingProfileBadRequest(): void
+    public function testPutPaymentTermsBadRequest(): void
     {
         // name is not defined
         $this->requestData['name'] = '';
@@ -134,7 +138,24 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
 
         $this->builder
             ->given('The request body is invalid or missing')
-            ->uponReceiving('Bad PUT request to /accounting-profile/{accountingProfileId}');
+            ->uponReceiving('Bad PUT request to /payment-terms/{paymentTermsId}');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
+    public function testPutPaymentTermsUnprocessableEntity(): void
+    {
+        // Invalid accountingProfileId
+        $this->requestData['accountingProfileId'] = 'b88874e9-85d6-4026-be7b-29340005a2d1';
+
+        // Error code in response is 422
+        $this->expectedStatusCode = '422';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        $this->builder
+            ->given('An Accounting Profile for accountingProfileId does not exist')
+            ->uponReceiving('Unprocessable POST request to /payment-terms');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
@@ -154,9 +175,11 @@ class AccountingProfileConsumerPutAccountingProfileTest extends AccountingProfil
         $factory->setToken($this->token);
         $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        $accountingProfile = (new NewAccountingProfile())
-            ->setName($this->requestData['name']);
+        $paymentTerms = (new NewPaymentTerms())
+            ->setName($this->requestData['name'])
+            ->setBillingInterval($this->requestData['billingInterval'])
+            ->setAccountingProfileId($this->requestData['accountingProfileId']);
 
-        return $client->putAccountingProfile($this->accountingProfileId, $accountingProfile, Client::FETCH_RESPONSE);
+        return $client->putPaymentTerms($this->paymentTermsId, $paymentTerms, Client::FETCH_RESPONSE);
     }
 }
