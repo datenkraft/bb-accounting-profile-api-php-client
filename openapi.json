@@ -545,8 +545,8 @@
                 "tags": [
                     "paymentTerms"
                 ],
-                "summary": "Get a list of Payment Termss",
-                "description": "Get a list of Payment Termss",
+                "summary": "Get a list of Payment Terms",
+                "description": "Get a list of Payment Terms",
                 "operationId": "getPaymentTermsCollection",
                 "responses": {
                     "200": {
@@ -613,7 +613,7 @@
                     "paymentTerms"
                 ],
                 "summary": "Add new Payment Terms",
-                "description": "Add ew PaymentTerms",
+                "description": "Add new Payment Terms",
                 "operationId": "postPaymentTerms",
                 "requestBody": {
                     "required": true,

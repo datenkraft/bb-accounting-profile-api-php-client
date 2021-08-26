@@ -126,7 +126,7 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetPaymentTermsCollection(), $fetch);
     }
     /**
-     * Add ew PaymentTerms
+     * Add new Payment Terms
      *
      * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewPaymentTerms $requestBody 
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
