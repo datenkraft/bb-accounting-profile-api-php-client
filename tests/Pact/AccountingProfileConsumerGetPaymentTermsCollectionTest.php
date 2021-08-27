@@ -10,10 +10,10 @@ use Exception;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class AccountingProfileConsumerGetAccountingProfileCollectionTest
+ * Class AccountingProfileConsumerGetPaymentTermsCollectionTest
  * @package Pact
  */
-class AccountingProfileConsumerGetAccountingProfileCollectionTest extends AccountingProfileConsumerTest
+class AccountingProfileConsumerGetPaymentTermsCollectionTest extends AccountingProfileConsumerTest
 {
     /**
      * @throws Exception
@@ -24,7 +24,7 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
 
         $this->method = 'GET';
 
-        $this->token = getenv('VALID_TOKEN_ACCOUNTING_PROFILE_GET');
+        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_GET');
 
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token
@@ -36,26 +36,28 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
         $this->requestData = [];
         $this->responseData = $this->matcher->eachLike(
             [
+                'paymentTermsId' => $this->matcher->uuid(),
+                'name' => $this->matcher->like('Payment Terms Test'),
+                'billingInterval' => $this->matcher->like('monthly'),
                 'accountingProfileId' => $this->matcher->uuid(),
-                'name' => $this->matcher->like('Accounting Profile Test'),
             ]
         );
 
-        $this->path = '/accounting-profile';
+        $this->path = '/payment-terms';
     }
 
-    public function testGetAccountingProfileCollectionSuccess(): void
+    public function testGetPaymentTermsCollectionSuccess(): void
     {
         $this->expectedStatusCode = '200';
 
         $this->builder
             ->given('The request is valid, the token is valid and has a valid scope')
-            ->uponReceiving('Successful GET request to /accounting-profile');
+            ->uponReceiving('Successful GET request to /payment-terms');
 
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileCollectionUnauthorized(): void
+    public function testGetPaymentTermsCollectionUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -67,13 +69,13 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
 
         $this->builder
             ->given('The token is invalid')
-            ->uponReceiving('Unauthorized GET request to /accounting-profile');
+            ->uponReceiving('Unauthorized GET request to /payment-terms');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testGetAccountingProfileCollectionForbidden(): void
+    public function testGetPaymentTermsCollectionForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -85,7 +87,7 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
 
         $this->builder
             ->given('The request is valid, the token is valid with an invalid scope')
-            ->uponReceiving('Forbidden GET request to /accounting-profile');
+            ->uponReceiving('Forbidden GET request to /payment-terms');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
@@ -104,6 +106,6 @@ class AccountingProfileConsumerGetAccountingProfileCollectionTest extends Accoun
         $factory->setToken($this->token);
         $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        return $client->getAccountingProfileCollection(Client::FETCH_RESPONSE);
+        return $client->getPaymentTermsCollection(Client::FETCH_RESPONSE);
     }
 }

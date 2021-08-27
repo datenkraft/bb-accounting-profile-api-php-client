@@ -17,7 +17,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
 {
     protected string $accountingProfileId;
     protected string $accountingProfileIdValid;
-    protected string $accountingProfileIdInValid;
+    protected string $accountingProfileIdInvalid;
 
     /**
      * @throws Exception
@@ -36,7 +36,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->responseHeaders = [];
 
         $this->accountingProfileIdValid = '2becace9-dd9a-4770-97e5-06e8f47786d6';
-        $this->accountingProfileIdInValid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
+        $this->accountingProfileIdInvalid = 'b88874e9-85d6-4026-be7b-29340005a2d1';
 
         $this->accountingProfileId = $this->accountingProfileIdValid;
 
@@ -52,7 +52,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
 
         $this->builder
             ->given(
-                'A Accounting Profile with accountingProfileId exists, ' .
+                'An Accounting Profile with accountingProfileId exists, ' .
                 'the request is valid, the token is valid and has a valid scope'
             )
             ->uponReceiving('Successful DELETE request to /accounting-profile/{accountingProfileId}');
@@ -99,7 +99,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
     public function testDeleteAccountingProfileNotFound(): void
     {
         // Path with accountingProfileId for non existent accountingProfile
-        $this->accountingProfileId = $this->accountingProfileIdInValid;
+        $this->accountingProfileId = $this->accountingProfileIdInvalid;
         $this->path = '/accounting-profile/' . $this->accountingProfileId;
 
         // Error code in response is 404
@@ -107,9 +107,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         $this->builder
-            ->given(
-                'A Accounting Profile with profileAccountId does not exist'
-            )
+            ->given('An Accounting Profile with accountingProfileId does not exist')
             ->uponReceiving('Not Found DELETE request to /accounting-profile/{accountingProfileId}');
 
         $this->responseData = $this->errorResponse;
@@ -129,6 +127,37 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->builder
             ->given('The request query is invalid or missing')
             ->uponReceiving('Bad DELETE request to /accounting-profile/{accountingProfileId}');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDeleteAccountingProfileConflict(): void
+    {
+        // accountingProfileId for Accounting Profile with existing Payment Terms
+        $this->accountingProfileId = 'f6737e9b-db43-4ff9-b441-8a8271163f63';
+        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+
+        // Error code in response is 409
+        $this->expectedStatusCode = '409';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+        $this->errorResponse['errors'][0]['extra'] = [
+            'paymentTerms' => $this->matcher->eachLike(
+                [
+                    'paymentTermsId' => $this->matcher->uuid(),
+                    'name' => $this->matcher->like('Payment Terms Test'),
+                    'billingInterval' => $this->matcher->like('monthly'),
+                    'accountingProfileId' => $this->matcher->uuid(),
+                ]
+            )
+        ];
+
+        $this->builder
+            ->given('Payment Terms exist for the Account Profile with accountingProfileId')
+            ->uponReceiving('Conflicted DELETE request to /accounting-profile/{accountingProfileId}');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
