@@ -135,7 +135,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
     /**
      * @throws Exception
      */
-    public function testDeleteAccountingProfileConflict(): void
+    public function testDeleteAccountingProfileConflictPaymentTerms(): void
     {
         // accountingProfileId for Accounting Profile with existing Payment Terms
         $this->accountingProfileId = 'f6737e9b-db43-4ff9-b441-8a8271163f63';
@@ -156,8 +156,39 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         ];
 
         $this->builder
-            ->given('Payment Terms exist for the Account Profile with accountingProfileId')
-            ->uponReceiving('Conflicted DELETE request to /accounting-profile/{accountingProfileId}');
+            ->given('Payment Terms exist for the Accounting Profile with accountingProfileId')
+            ->uponReceiving('Conflicted DELETE request to /accounting-profile/{accountingProfileId} - Payment Terms');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testDeleteAccountingProfileConflictProject(): void
+    {
+        // accountingProfileId for Accounting Profile with existing Projects
+        $this->accountingProfileId = 'c4f96d2a-eee7-437f-bf78-622d8a1ae820';
+        $this->path = '/accounting-profile/' . $this->accountingProfileId;
+
+        // Error code in response is 409
+        $this->expectedStatusCode = '409';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+        $this->errorResponse['errors'][0]['extra'] = [
+            'projects' => $this->matcher->eachLike(
+                [
+                    'projectId' => $this->matcher->uuid(),
+                    'customerId' => $this->matcher->uuid(),
+                    'name' => $this->matcher->like('Project Test'),
+                    'accountingProfileId' => 'c4f96d2a-eee7-437f-bf78-622d8a1ae820',
+                ]
+            )
+        ];
+
+        $this->builder
+            ->given('At least one Project exists for the Accounting Profile with accountingProfileId')
+            ->uponReceiving('Conflicted DELETE request to /accounting-profile/{accountingProfileId} - Project');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
