@@ -236,6 +236,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Server error",
                         "content": {
@@ -421,6 +431,26 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deleteAccountingProfileConflictErrorResponse"
                                 }
                             }
                         }
@@ -756,6 +786,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Server error",
                         "content": {
@@ -945,6 +985,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Server error",
                         "content": {
@@ -1002,6 +1052,78 @@
                     },
                     "message": {
                         "description": "Message",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "deleteAccountingProfileConflictErrorResponse": {
+                "properties": {
+                    "errors": {
+                        "description": "errors",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/deleteAccountingProfileConflictError"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "deleteAccountingProfileConflictError": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/error"
+                    },
+                    {
+                        "properties": {
+                            "extra": {
+                                "description": "Extra",
+                                "properties": {
+                                    "paymentTerms": {
+                                        "description": "Payment Terms",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/paymentTerms"
+                                        }
+                                    },
+                                    "projects": {
+                                        "description": "Projects",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/project"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "project": {
+                "required": [
+                    "projectId",
+                    "customerId",
+                    "name",
+                    "accountingProfileId"
+                ],
+                "properties": {
+                    "projectId": {
+                        "description": "Project Id",
+                        "type": "string"
+                    },
+                    "customerId": {
+                        "description": "Customer Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Project name",
+                        "type": "string"
+                    },
+                    "accountingProfileId": {
+                        "description": "Accounting Profile Id",
                         "type": "string"
                     }
                 },

@@ -42,6 +42,8 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileForbiddenException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileBadRequestException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileConflictException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAccountingProfileInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -59,6 +61,7 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAccountingProfileUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAccountingProfileForbiddenException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAccountingProfileNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAccountingProfileBadRequestException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAccountingProfileInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -150,6 +153,7 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsForbiddenException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsBadRequestException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeletePaymentTermsInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
      *
@@ -167,6 +171,7 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsForbiddenException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsBadRequestException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
      *
