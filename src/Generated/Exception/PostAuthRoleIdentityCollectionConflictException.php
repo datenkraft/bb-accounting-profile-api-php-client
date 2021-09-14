@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PostAuthRoleIdentityCollectionEndpointConflictException extends ConflictException
+class PostAuthRoleIdentityCollectionConflictException extends ConflictException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)

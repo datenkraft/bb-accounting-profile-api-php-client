@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PostAuthRoleIdentityCollectionEndpointForbiddenException extends ForbiddenException
+class PostAuthRoleIdentityCollectionBadRequestException extends BadRequestException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Forbidden', 403);
+        parent::__construct('Bad Request', 400);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()

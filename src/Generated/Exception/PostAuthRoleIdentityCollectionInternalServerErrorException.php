@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class GetAuthRoleIdentityCollectionEndpointInternalServerErrorException extends InternalServerErrorException
+class PostAuthRoleIdentityCollectionInternalServerErrorException extends InternalServerErrorException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)

@@ -2,12 +2,12 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class GetAuthRoleIdentityCollectionEndpointBadRequestException extends BadRequestException
+class PostAuthRoleIdentityCollectionNotFoundException extends NotFoundException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Bad Request', 400);
+        parent::__construct('Not Found', 404);
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse()
