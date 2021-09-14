@@ -499,7 +499,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/getAuthRoleCollectionResponse"
+                                    "$ref": "#/components/schemas/getAuthRoleCollection"
                                 }
                             }
                         }
@@ -571,7 +571,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/authRoleIdentityCollectionResponse"
+                                    "$ref": "#/components/schemas/authRoleIdentityCollection"
                                 }
                             }
                         }
@@ -635,13 +635,23 @@
                 "summary": "Create one or more role to identity assignments in this resource server",
                 "description": "Create one or more role to identity assignments in this resource server",
                 "operationId": "postAuthRoleIdentityCollection",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/authRoleIdentityCollection"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "201": {
                         "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/authRoleIdentityCollectionResponse"
+                                    "$ref": "#/components/schemas/authRoleIdentityCollection"
                                 }
                             }
                         }
@@ -1449,7 +1459,7 @@
                 },
                 "type": "object"
             },
-            "authRoleIdentityCollectionResponse": {
+            "authRoleIdentityCollection": {
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/authRoleIdentityResource"
@@ -1472,7 +1482,7 @@
                 },
                 "type": "object"
             },
-            "getAuthRoleCollectionResponse": {
+            "getAuthRoleCollection": {
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/authRoleResource"
