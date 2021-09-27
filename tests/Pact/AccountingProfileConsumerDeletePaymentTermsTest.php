@@ -28,8 +28,6 @@ class AccountingProfileConsumerDeletePaymentTermsTest extends AccountingProfileC
 
         $this->method = 'DELETE';
 
-        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_DELETE');
-
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token
         ];
@@ -41,7 +39,7 @@ class AccountingProfileConsumerDeletePaymentTermsTest extends AccountingProfileC
         $this->paymentTermsId = $this->paymentTermsIdValid;
 
         $this->requestData = [];
-        $this->responseData = null;
+        $this->responseData = [];
 
         $this->path = '/payment-terms/' . $this->paymentTermsId;
     }
@@ -80,8 +78,7 @@ class AccountingProfileConsumerDeletePaymentTermsTest extends AccountingProfileC
 
     public function testDeletePaymentTermsForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 403

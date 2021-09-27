@@ -28,8 +28,6 @@ class AccountingProfileConsumerGetPaymentTermsTest extends AccountingProfileCons
 
         $this->method = 'GET';
 
-        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_GET');
-
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token
         ];
@@ -87,8 +85,7 @@ class AccountingProfileConsumerGetPaymentTermsTest extends AccountingProfileCons
 
     public function testGetPaymentTermsForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 403

@@ -25,8 +25,6 @@ class AccountingProfileConsumerPostPaymentTermsTest extends AccountingProfileCon
 
         $this->method = 'POST';
 
-        $this->token = getenv('VALID_TOKEN_PAYMENT_TERMS_POST');
-
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token,
             'Content-Type' => 'application/json'
@@ -78,8 +76,7 @@ class AccountingProfileConsumerPostPaymentTermsTest extends AccountingProfileCon
 
     public function testPostPaymentTermsForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         $this->expectedStatusCode = '403';

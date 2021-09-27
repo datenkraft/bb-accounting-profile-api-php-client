@@ -75,6 +75,6 @@ class PutAccountingProfile extends \Datenkraft\Backbone\Client\AccountingProfile
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

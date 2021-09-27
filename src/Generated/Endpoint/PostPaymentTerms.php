@@ -68,6 +68,6 @@ class PostPaymentTerms extends \Datenkraft\Backbone\Client\AccountingProfileApi\
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

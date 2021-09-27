@@ -16,24 +16,23 @@ use PhpPact\Consumer\Model\ProviderResponse;
  */
 abstract class AccountingProfileConsumerTest extends TestCase
 {
-    protected $builder;
-    protected $config;
+    protected InteractionBuilder $builder;
+    protected MockServerEnvConfig $config;
 
-    protected $token;
+    protected string $token;
 
-    protected $method;
-    protected $path;
+    protected string $method;
+    protected string $path;
 
-    protected $requestHeaders;
-    protected $responseHeaders;
-    protected $expectedStatusCode;
+    protected array $requestHeaders;
+    protected array $responseHeaders;
+    protected string $expectedStatusCode;
 
-    protected $requestData;
-    protected $responseData;
-    protected $errorResponse;
+    protected array $requestData;
+    protected array $responseData;
+    protected array $errorResponse;
 
     protected $matcher;
-
 
     /**
      * @throws Exception
@@ -41,6 +40,9 @@ abstract class AccountingProfileConsumerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->token = getenv('CONTRACT_TEST_CLIENT_TOKEN');
+
         $this->matcher = new Matcher();
         $this->config = new MockServerEnvConfig();
         try {
