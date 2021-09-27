@@ -28,8 +28,6 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
 
         $this->method = 'DELETE';
 
-        $this->token = getenv('VALID_TOKEN_ACCOUNTING_PROFILE_DELETE');
-
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token
         ];
@@ -41,7 +39,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->accountingProfileId = $this->accountingProfileIdValid;
 
         $this->requestData = [];
-        $this->responseData = null;
+        $this->responseData = [];
 
         $this->path = '/accounting-profile/' . $this->accountingProfileId;
     }
@@ -80,8 +78,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
 
     public function testDeleteAccountingProfileForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         // Error code in response is 403

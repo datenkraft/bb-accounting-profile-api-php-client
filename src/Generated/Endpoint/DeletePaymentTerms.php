@@ -70,6 +70,6 @@ class DeletePaymentTerms extends \Datenkraft\Backbone\Client\AccountingProfileAp
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

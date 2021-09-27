@@ -70,6 +70,6 @@ class GetPaymentTerms extends \Datenkraft\Backbone\Client\AccountingProfileApi\G
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }

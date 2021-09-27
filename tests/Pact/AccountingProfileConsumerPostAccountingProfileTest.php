@@ -25,8 +25,6 @@ class AccountingProfileConsumerPostAccountingProfileTest extends AccountingProfi
 
         $this->method = 'POST';
 
-        $this->token = getenv('VALID_TOKEN_ACCOUNTING_PROFILE_POST');
-
         $this->requestHeaders = [
             'Authorization' => 'Bearer ' . $this->token,
             'Content-Type' => 'application/json'
@@ -74,8 +72,7 @@ class AccountingProfileConsumerPostAccountingProfileTest extends AccountingProfi
 
     public function testPostAccountingProfileForbidden(): void
     {
-        // Token with invalid scope
-        $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_WITHOUT_PERMISSIONS_TOKEN');
         $this->requestHeaders['Authorization'] = 'Bearer ' . $this->token;
 
         $this->expectedStatusCode = '403';
