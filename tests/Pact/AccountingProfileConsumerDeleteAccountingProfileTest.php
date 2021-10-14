@@ -39,7 +39,7 @@ class AccountingProfileConsumerDeleteAccountingProfileTest extends AccountingPro
         $this->accountingProfileId = $this->accountingProfileIdValid;
 
         $this->requestData = [];
-        $this->responseData = [];
+        $this->responseData = null;
 
         $this->path = '/accounting-profile/' . $this->accountingProfileId;
     }

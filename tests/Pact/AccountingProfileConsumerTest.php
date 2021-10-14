@@ -29,7 +29,7 @@ abstract class AccountingProfileConsumerTest extends TestCase
     protected string $expectedStatusCode;
 
     protected array $requestData;
-    protected array $responseData;
+    protected ?array $responseData;
     protected array $errorResponse;
 
     protected $matcher;

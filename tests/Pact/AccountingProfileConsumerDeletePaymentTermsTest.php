@@ -39,7 +39,7 @@ class AccountingProfileConsumerDeletePaymentTermsTest extends AccountingProfileC
         $this->paymentTermsId = $this->paymentTermsIdValid;
 
         $this->requestData = [];
-        $this->responseData = [];
+        $this->responseData = null;
 
         $this->path = '/payment-terms/' . $this->paymentTermsId;
     }
