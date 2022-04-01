@@ -4,14 +4,14 @@ namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
 class DeleteAccountingProfileConflictException extends ConflictException
 {
-    private $deleteAccountingProfileConflictErrorResponse;
-    public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\DeleteAccountingProfileConflictErrorResponse $deleteAccountingProfileConflictErrorResponse)
+    private $errorResponse;
+    public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)
     {
         parent::__construct('Conflict', 409);
-        $this->deleteAccountingProfileConflictErrorResponse = $deleteAccountingProfileConflictErrorResponse;
+        $this->errorResponse = $errorResponse;
     }
-    public function getDeleteAccountingProfileConflictErrorResponse()
+    public function getErrorResponse()
     {
-        return $this->deleteAccountingProfileConflictErrorResponse;
+        return $this->errorResponse;
     }
 }
