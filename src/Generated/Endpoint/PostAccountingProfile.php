@@ -68,6 +68,6 @@ class PostAccountingProfile extends \Datenkraft\Backbone\Client\AccountingProfil
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }

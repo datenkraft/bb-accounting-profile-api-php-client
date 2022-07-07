@@ -74,6 +74,6 @@ class DeleteAccountingProfile extends \Datenkraft\Backbone\Client\AccountingProf
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }

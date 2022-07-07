@@ -52,6 +52,6 @@ class GetPaymentTermsCollection extends \Datenkraft\Backbone\Client\AccountingPr
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }

@@ -6,6 +6,90 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
 {
     /**
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Psr\Http\Message\ResponseInterface
+     */
+    public function getOpenApi(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetOpenApi(), $fetch);
+    }
+    /**
+     * Get the openapi documentation in the specified format (yaml or json, fallback is json)
+     *
+     * @param string $format Openapi file format
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Psr\Http\Message\ResponseInterface
+     */
+    public function getOpenApiInFormat(string $format, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetOpenApiInFormat($format), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getAuthRoleCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetAuthRoleCollection(), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionNotFoundException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function deleteAuthRoleIdentityCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\DeleteAuthRoleIdentityCollection(), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function getAuthRoleIdentityCollection(string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetAuthRoleIdentityCollection(), $fetch);
+    }
+    /**
+     * Create one or more role to identity assignments in this resource server
+     *
+     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionBadRequestException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionUnauthorizedException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionForbiddenException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionConflictException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionUnprocessableEntityException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionInternalServerErrorException
+     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
+     *
+     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     */
+    public function postAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\PostAuthRoleIdentityCollection($requestBody), $fetch);
+    }
+    /**
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionForbiddenException
      * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetPaymentTermsCollectionInternalServerErrorException
@@ -173,93 +257,6 @@ class Client extends \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\
     public function putAccountingProfile(string $accountingProfileId, \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\NewAccountingProfile $requestBody, string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\PutAccountingProfile($accountingProfileId, $requestBody), $fetch);
-    }
-    /**
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function getAuthRoleCollection(string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetAuthRoleCollection(), $fetch);
-    }
-    /**
-     * Delete one or more role to identity assignments in this resource server
-     *
-     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionNotFoundException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\DeleteAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function deleteAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\DeleteAuthRoleIdentityCollection($requestBody), $fetch);
-    }
-    /**
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\GetAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function getAuthRoleIdentityCollection(string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetAuthRoleIdentityCollection(), $fetch);
-    }
-    /**
-     * Create one or more role to identity assignments in this resource server
-     *
-     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionBadRequestException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionUnauthorizedException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionForbiddenException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionConflictException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionUnprocessableEntityException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\PostAuthRoleIdentityCollectionInternalServerErrorException
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
-     */
-    public function postAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\PostAuthRoleIdentityCollection($requestBody), $fetch);
-    }
-    /**
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Psr\Http\Message\ResponseInterface
-     */
-    public function getOpenApi(string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetOpenApi(), $fetch);
-    }
-    /**
-     * Get the openapi documentation in the specified format (yaml or json, fallback is json)
-     *
-     * @param string $format Openapi file format
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
-     * @throws \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception\UnexpectedStatusCodeException
-     *
-     * @return null|\Psr\Http\Message\ResponseInterface
-     */
-    public function getOpenApiInFormat(string $format, string $fetch = self::FETCH_OBJECT)
-    {
-        return $this->executeEndpoint(new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Endpoint\GetOpenApiInFormat($format), $fetch);
     }
     public static function create($httpClient = null, array $additionalPlugins = array(), array $additionalNormalizers = array())
     {

@@ -52,6 +52,6 @@ class GetAccountingProfileCollection extends \Datenkraft\Backbone\Client\Account
     }
     public function getAuthenticationScopes() : array
     {
-        return array();
+        return array('oAuthAuthorization', 'bearerAuth');
     }
 }
