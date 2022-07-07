@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Normalizer;
 
-use Jane\JsonSchemaRuntime\Reference;
+use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Runtime\Normalizer\CheckArray;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
@@ -16,14 +16,17 @@ class DeleteAccountingProfileConflictErrorNormalizer implements DenormalizerInte
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null) : bool
     {
         return $type === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\DeleteAccountingProfileConflictError';
     }
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null) : bool
     {
         return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\DeleteAccountingProfileConflictError';
     }
+    /**
+     * @return mixed
+     */
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (isset($data['$ref'])) {
@@ -47,6 +50,9 @@ class DeleteAccountingProfileConflictErrorNormalizer implements DenormalizerInte
         }
         return $object;
     }
+    /**
+     * @return array|string|int|float|bool|\ArrayObject|null
+     */
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
