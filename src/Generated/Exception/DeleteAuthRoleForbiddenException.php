@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PutPaymentTermsForbiddenException extends ForbiddenException
+class DeleteAuthRoleForbiddenException extends ForbiddenException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
