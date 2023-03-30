@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PutAccountingProfileBadRequestException extends BadRequestException
+class GetAuditLogCollectionBadRequestException extends BadRequestException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
