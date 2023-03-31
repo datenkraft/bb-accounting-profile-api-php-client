@@ -56,9 +56,15 @@ class NewPaymentTermsNormalizer implements DenormalizerInterface, NormalizerInte
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $data['name'] = $object->getName();
-        $data['billingInterval'] = $object->getBillingInterval();
-        $data['accountingProfileId'] = $object->getAccountingProfileId();
+        if (null !== $object->getName()) {
+            $data['name'] = $object->getName();
+        }
+        if (null !== $object->getBillingInterval()) {
+            $data['billingInterval'] = $object->getBillingInterval();
+        }
+        if (null !== $object->getAccountingProfileId()) {
+            $data['accountingProfileId'] = $object->getAccountingProfileId();
+        }
         return $data;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PutPaymentTermsInternalServerErrorException extends InternalServerErrorException
+class PostAuthRoleConflictException extends ConflictException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
@@ -10,7 +10,7 @@ class PutPaymentTermsInternalServerErrorException extends InternalServerErrorExc
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Server error');
+        parent::__construct('Conflict');
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse() : \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
