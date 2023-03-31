@@ -11,18 +11,18 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class PaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class BasePaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
     public function supportsDenormalization($data, $type, $format = null) : bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\PaymentTerms';
+        return $type === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\BasePaymentTerms';
     }
     public function supportsNormalization($data, $format = null) : bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\PaymentTerms';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\BasePaymentTerms';
     }
     /**
      * @return mixed
@@ -35,12 +35,9 @@ class PaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\PaymentTerms();
+        $object = new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\BasePaymentTerms();
         if (null === $data || false === \is_array($data)) {
             return $object;
-        }
-        if (\array_key_exists('paymentTermsId', $data)) {
-            $object->setPaymentTermsId($data['paymentTermsId']);
         }
         if (\array_key_exists('name', $data)) {
             $object->setName($data['name']);
@@ -59,9 +56,6 @@ class PaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterfa
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPaymentTermsId()) {
-            $data['paymentTermsId'] = $object->getPaymentTermsId();
-        }
         if (null !== $object->getName()) {
             $data['name'] = $object->getName();
         }
