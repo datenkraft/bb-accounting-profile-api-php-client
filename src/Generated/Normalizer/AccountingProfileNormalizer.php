@@ -53,8 +53,12 @@ class AccountingProfileNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $data['accountingProfileId'] = $object->getAccountingProfileId();
-        $data['name'] = $object->getName();
+        if (null !== $object->getAccountingProfileId()) {
+            $data['accountingProfileId'] = $object->getAccountingProfileId();
+        }
+        if (null !== $object->getName()) {
+            $data['name'] = $object->getName();
+        }
         return $data;
     }
 }
