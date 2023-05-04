@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PutAccountingProfileInternalServerErrorException extends InternalServerErrorException
+class PostAuthRoleForbiddenException extends ForbiddenException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
@@ -10,7 +10,7 @@ class PutAccountingProfileInternalServerErrorException extends InternalServerErr
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse)
     {
-        parent::__construct('Server error');
+        parent::__construct('Forbidden');
         $this->errorResponse = $errorResponse;
     }
     public function getErrorResponse() : \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
