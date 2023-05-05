@@ -50,7 +50,9 @@ class NewAccountingProfileNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        $data['name'] = $object->getName();
+        if (null !== $object->getName()) {
+            $data['name'] = $object->getName();
+        }
         return $data;
     }
 }
