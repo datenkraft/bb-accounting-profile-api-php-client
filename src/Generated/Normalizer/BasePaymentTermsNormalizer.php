@@ -11,18 +11,18 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class CollectionPaginationNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class BasePaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     use CheckArray;
     public function supportsDenormalization($data, $type, $format = null) : bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\CollectionPagination';
+        return $type === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\BasePaymentTerms';
     }
     public function supportsNormalization($data, $format = null) : bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\CollectionPagination';
+        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\AccountingProfileApi\\Generated\\Model\\BasePaymentTerms';
     }
     /**
      * @return mixed
@@ -35,21 +35,18 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\CollectionPagination();
+        $object = new \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\BasePaymentTerms();
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
-        if (\array_key_exists('page', $data)) {
-            $object->setPage($data['page']);
+        if (\array_key_exists('name', $data)) {
+            $object->setName($data['name']);
         }
-        if (\array_key_exists('pageSize', $data)) {
-            $object->setPageSize($data['pageSize']);
+        if (\array_key_exists('billingInterval', $data)) {
+            $object->setBillingInterval($data['billingInterval']);
         }
-        if (\array_key_exists('totalCount', $data) && $data['totalCount'] !== null) {
-            $object->setTotalCount($data['totalCount']);
-        }
-        elseif (\array_key_exists('totalCount', $data) && $data['totalCount'] === null) {
-            $object->setTotalCount(null);
+        if (\array_key_exists('accountingProfileId', $data)) {
+            $object->setAccountingProfileId($data['accountingProfileId']);
         }
         return $object;
     }
@@ -59,14 +56,14 @@ class CollectionPaginationNormalizer implements DenormalizerInterface, Normalize
     public function normalize($object, $format = null, array $context = array())
     {
         $data = array();
-        if (null !== $object->getPage()) {
-            $data['page'] = $object->getPage();
+        if (null !== $object->getName()) {
+            $data['name'] = $object->getName();
         }
-        if (null !== $object->getPageSize()) {
-            $data['pageSize'] = $object->getPageSize();
+        if (null !== $object->getBillingInterval()) {
+            $data['billingInterval'] = $object->getBillingInterval();
         }
-        if (null !== $object->getTotalCount()) {
-            $data['totalCount'] = $object->getTotalCount();
+        if (null !== $object->getAccountingProfileId()) {
+            $data['accountingProfileId'] = $object->getAccountingProfileId();
         }
         return $data;
     }
