@@ -62,9 +62,15 @@ class PaymentTermsNormalizer implements DenormalizerInterface, NormalizerInterfa
         if (null !== $object->getPaymentTermsId()) {
             $data['paymentTermsId'] = $object->getPaymentTermsId();
         }
-        $data['name'] = $object->getName();
-        $data['billingInterval'] = $object->getBillingInterval();
-        $data['accountingProfileId'] = $object->getAccountingProfileId();
+        if (null !== $object->getName()) {
+            $data['name'] = $object->getName();
+        }
+        if (null !== $object->getBillingInterval()) {
+            $data['billingInterval'] = $object->getBillingInterval();
+        }
+        if (null !== $object->getAccountingProfileId()) {
+            $data['accountingProfileId'] = $object->getAccountingProfileId();
+        }
         return $data;
     }
 }
