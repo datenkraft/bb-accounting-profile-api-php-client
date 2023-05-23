@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class PutAccountingProfileForbiddenException extends ForbiddenException
+class GetAuditLogCollectionForbiddenException extends ForbiddenException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse

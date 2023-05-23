@@ -7,9 +7,9 @@ class DeleteAuthRoleIdentityCollection extends \Datenkraft\Backbone\Client\Accou
     /**
      * Delete one or more role to identity assignments in this resource server
      *
-     * @param \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param null|\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
      */
-    public function __construct(array $requestBody)
+    public function __construct(?array $requestBody = null)
     {
         $this->body = $requestBody;
     }
