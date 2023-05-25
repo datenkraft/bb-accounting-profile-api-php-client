@@ -63,6 +63,14 @@ $factory = new ClientFactory($config);
 $client = Client::createWithFactory($factory);
 ~~~~
 
+### Example Endpoint: Post Accounting Profile
+~~~~ php
+$accountingProfile = (new NewAccountingProfile())->setName('Accounting Profile Test');
+
+$response = $client->postAccountingProfile($accountingProfile);
+$response; // accountingProfile
+
+~~~~
 
 ## Licence
 This repository is available under the [MIT license](https://opensource.org/licenses/MIT).
