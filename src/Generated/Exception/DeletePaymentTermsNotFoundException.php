@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Exception;
 
-class DeleteAccountingProfileConflictException extends ConflictException
+class DeletePaymentTermsNotFoundException extends NotFoundException
 {
     /**
      * @var \Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse
@@ -14,7 +14,10 @@ class DeleteAccountingProfileConflictException extends ConflictException
     private $response;
     public function __construct(\Datenkraft\Backbone\Client\AccountingProfileApi\Generated\Model\ErrorResponse $errorResponse, \Psr\Http\Message\ResponseInterface $response)
     {
-        parent::__construct('Conflict');
+        parent::__construct('Not Found
+
+Error codes:
+- DATA_NOT_FOUND: The requested data could not be found.');
         $this->errorResponse = $errorResponse;
         $this->response = $response;
     }
